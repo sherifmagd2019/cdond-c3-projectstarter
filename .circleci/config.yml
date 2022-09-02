@@ -81,7 +81,7 @@ jobs:
       # Your job code here
       - checkout
       - run:
-      name: Back-end scan
+          name: Back-end scan
           command: |
             cd backend
             npm install
