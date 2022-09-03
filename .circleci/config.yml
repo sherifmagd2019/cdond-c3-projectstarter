@@ -12,21 +12,26 @@ jobs:
       - slack/notify:
           custom: |
             {
-              {
-                "blocks": [
-                  {
-                    "type": "divider"
-                  },
-                  {
-                    "type": "section",
-                    "text": {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
                       "type": "plain_text",
-                      "text": "This is a plain text section block.",
+                      "text": "xxxsssssssss",
                       "emoji": true
                     }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "This is a plain text section block.",
+                    "emoji": true
                   }
-                ]
-              }
+                }
+              ]
             }
           event: always       
   build-frontend:
