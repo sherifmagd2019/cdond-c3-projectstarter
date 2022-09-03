@@ -37,23 +37,7 @@ jobs:
             cd frontend
             npm install
             npm run build
-      - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "Build Frontend Pass",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: pass  
+       
 
   build-backend:
     docker:
