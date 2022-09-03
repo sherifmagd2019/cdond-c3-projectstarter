@@ -12,18 +12,30 @@ jobs:
       - slack/notify:
           custom: |
             {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
+              {
+                "blocks": [
+                  {
+                    "type": "section",
+                    "text": {
                       "type": "plain_text",
-                      "text": "*Start new CI/CD...*",
+                      "text": "Project build pass ",
                       "emoji": true
                     }
-                  ]
-                }
-              ]
+                  },
+                  {
+                    "type": "divider"
+                  },
+                  {
+                    "type": "context",
+                    "elements": [
+                      {
+                        "type": "mrkdwn",
+                        "text": " Build succeded  :smiley:  "
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           event: always       
   build-frontend:
@@ -37,12 +49,7 @@ jobs:
             cd frontend
             npm install
             npm run build
-      - slack/notify:
-          event: fail
-	        template: basic_fail_1 
-      - slack/notify:
-	        event: pass
-	        template: basic_success_1      
+     
 
   build-backend:
     docker:
