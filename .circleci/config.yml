@@ -72,6 +72,9 @@ jobs:
     docker:
       # Docker image here
       - image: circleci/node:13.8.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       # Checkout code from git
       # Restore from cache
@@ -83,11 +86,19 @@ jobs:
             cd frontend
             npm install
             npm run test
-                
+      - slack/notify:
+           event: pass
+           template: basic_success_1
+      - slack/notify:
+           event: fail
+           template: basic_fail_1             
   test-backend:
     docker:
       # Docker image here
       - image: circleci/node:13.8.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       # Checkout code from git
       # Restore from cache
@@ -98,10 +109,19 @@ jobs:
           command: |
             cd backend
             npm install
-            npm run test   
+            npm run test 
+      - slack/notify:
+           event: pass
+           template: basic_success_1
+      - slack/notify:
+           event: fail
+           template: basic_fail_1        
   scan-frontend:
     docker:
       - image: circleci/node:13.8.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       # Checkout code from git
       # Restore from cache
@@ -114,10 +134,18 @@ jobs:
             npm install
             npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
-
+      - slack/notify:
+           event: pass
+           template: basic_success_1
+      - slack/notify:
+           event: fail
+           template: basic_fail_1  
   scan-backend:
     docker:
       - image: circleci/node:13.8.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       # Checkout code from git
       # Restore from cache
@@ -136,7 +164,12 @@ jobs:
             npm audit fix --force --production
             #fgfsdga
             npm audit --audit-level=none
-
+      - slack/notify:
+           event: pass
+           template: basic_success_1
+      - slack/notify:
+           event: fail
+           template: basic_fail_1  
 workflows:
   default:
     jobs:
