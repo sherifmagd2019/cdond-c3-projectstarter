@@ -46,14 +46,14 @@ jobs:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "Start Build Frontend",
+                      "text": "Build Frontend Pass",
                       "emoji": true
                     }
                   ]
                 }
               ]
             }
-          event: always  
+          event: pass  
 
   build-backend:
     docker:
