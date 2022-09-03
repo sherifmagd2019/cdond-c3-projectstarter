@@ -18,18 +18,10 @@ jobs:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "xxxsssssssss",
+                      "text": "Start CI ...",
                       "emoji": true
                     }
                   ]
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "This is a plain text section block.",
-                    "emoji": true
-                  }
                 }
               ]
             }
