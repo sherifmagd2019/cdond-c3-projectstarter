@@ -38,8 +38,8 @@ jobs:
             npm install
             npm run build
       - slack/notify:
-	        event: pass
-	        template: success_tagged_deploy_1 
+           event: pass
+           template: success_tagged_deploy_1 
 
   build-backend:
     docker:
