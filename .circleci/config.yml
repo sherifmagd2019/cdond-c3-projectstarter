@@ -18,14 +18,14 @@ jobs:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "Start CI ...",
+                      "text": "CI fail ...",
                       "emoji": true
                     }
                   ]
                 }
               ]
             }
-          event: always       
+          event: fail       
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -43,11 +43,16 @@ jobs:
             #npm install oauth-sign@^0.9.0
       - slack/notify:
            event: pass
-           template: success_tagged_deploy_1
-
+           template: basic_success_1
+      - slack/notify:
+           event: fail
+           template: basic_fail_1
   build-backend:
     docker:
       - image: circleci/node:13.8.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD 
     steps:
       - checkout
       - run:
@@ -56,6 +61,12 @@ jobs:
             cd backend
             npm install
             npm run build
+      - slack/notify:
+           event: pass
+           template: basic_success_1
+      - slack/notify:
+           event: fail
+           template: basic_fail_1           
   test-frontend:
     docker:
       # Docker image here
