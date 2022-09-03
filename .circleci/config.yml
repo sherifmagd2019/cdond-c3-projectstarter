@@ -10,22 +10,8 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var 
     steps:
       - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always       
+          event: fail
+          template: basic_fail_1       
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
