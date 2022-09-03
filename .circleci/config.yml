@@ -90,6 +90,7 @@ jobs:
             #npm audit fix --force
             #npm audit --audit-level=critical
             npm audit fix --force --production
+            npm audit --audit-level=normal
 
 workflows:
   default:
