@@ -25,7 +25,8 @@ jobs:
                 }
               ]
             }
-          event: fail       
+          event: fail   
+          #s    
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
