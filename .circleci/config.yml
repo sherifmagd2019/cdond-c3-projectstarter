@@ -15,24 +15,15 @@ jobs:
               {
                 "blocks": [
                   {
-                    "type": "section",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "Project build pass ",
-                      "emoji": true
-                    }
-                  },
-                  {
                     "type": "divider"
                   },
                   {
-                    "type": "context",
-                    "elements": [
-                      {
-                        "type": "mrkdwn",
-                        "text": " Build succeded  :smiley:  "
-                      }
-                    ]
+                    "type": "section",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "This is a plain text section block.",
+                      "emoji": true
+                    }
                   }
                 ]
               }
