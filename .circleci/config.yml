@@ -185,7 +185,7 @@ jobs:
             #npm audit --audit-level=critical
             npm audit fix --force --production
             #fgfsdga
-            npm audit --audit-level=none
+            #npm audit --audit-level=none
       - slack/notify:
            event: pass
            template: basic_success_1
