@@ -1,0 +1,1 @@
+simlate EC2 instance using a vmware running ubuntu
