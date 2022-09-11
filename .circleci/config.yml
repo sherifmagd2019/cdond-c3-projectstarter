@@ -347,7 +347,7 @@ jobs:
       #    state: present
       #    key:  ["18:54:2b:3e:b5:e2:9f:ee:43:fd:22:35:8c:36:af:33"]
       - add_ssh_keys:
-          fingerprints: ["18:54:2b:3e:b5:e2:9f:ee:43:fd:22:35:8c:36:af:33"]
+         fingerprints: ["18:54:2b:3e:b5:e2:9f:ee:43:fd:22:35:8c:36:af:33"]
       # attach workspace
       - attach_workspace:
           at: ~/
