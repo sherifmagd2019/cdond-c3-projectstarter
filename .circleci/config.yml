@@ -244,12 +244,13 @@ jobs:
       # Checkout code from git
       # Add ssh keys with fingerprint
       - checkout 
-      - name: Set authorized key  
-          authorized_key:
-          user: UDACITYKEY
-          state: present
-          key:  ["18:54:2b:3e:b5:e2:9f:ee:43:fd:22:35:8c:36:af:33"]
-
+      #- name: Set authorized key  
+      #    authorized_key:
+      #    user: UDACITYKEY
+      #    state: present
+      #    key:  ["18:54:2b:3e:b5:e2:9f:ee:43:fd:22:35:8c:36:af:33"]
+      - add_ssh_keys:
+          fingerprints: ["18:54:2b:3e:b5:e2:9f:ee:43:fd:22:35:8c:36:af:33"]
  
       # attach workspace
       - attach_workspace:
