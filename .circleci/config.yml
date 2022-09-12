@@ -231,6 +231,10 @@ jobs:
               --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text >> ~/project/.circleci/ansible/inventory.txt
             #exit 1
+      - run:
+          name: command: |
+            yum install -y tar gzip 
+                  
       - persist_to_workspace:
           root: ~/
           paths:
