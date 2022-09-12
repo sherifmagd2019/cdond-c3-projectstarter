@@ -280,11 +280,15 @@ jobs:
             ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
             #exit 1
+      - run: 
+          name: change 
+          command: |       
+            sudo chmod 744 ~/project/.circleci/ansible/inventory.txt 
       - run:
           name: Configure server
           command: |
             
-            ansible-playbook   ~/project/.circleci/ansible/configure-server.yml  -i inventory.txt 
+            ansible-playbook   ~/project/.circleci/ansible/configure-server.yml  -i inventory 
             # exit 1
       # Here's where you will add some code to rollback on failure      
       - destroy_environment
