@@ -271,9 +271,13 @@ jobs:
             # install the dependencies needed for your playbook
             apk update && apk upgrade
             apk add --update ansible 
-            apk add  aws-cli
+            #apk add  aws-cli
+            apk add python curl
             apk add  tar
             apk add  gzip
+            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+            unzip awscli-bundle.zip
+            ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
             #exit 1
       - run:
