@@ -229,6 +229,11 @@ jobs:
             # Your code here
             aws ec2 describe-instances \
               --query "Reservations[*].Instances[*].PublicIpAddress" \
+              --output text
+
+
+            aws ec2 describe-instances \
+              --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text >> ~/project/.circleci/ansible/inventory.txt
             #exit 1
       - run:
