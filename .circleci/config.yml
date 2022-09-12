@@ -271,9 +271,9 @@ jobs:
             # install the dependencies needed for your playbook
             apk update && apk upgrade
             apk add --update ansible 
-            apk add --update aws-cli
-            apk add --update tar
-            apk add --update gzip
+            apk add  aws-cli
+            apk add  tar
+            apk add  gzip
 
             #exit 1
       - run:
