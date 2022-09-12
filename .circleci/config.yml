@@ -232,7 +232,8 @@ jobs:
               --output text >> ~/project/.circleci/ansible/inventory.txt
             #exit 1
       - run:
-          name: command: |
+          name: install tar
+          command: |
             yum install -y tar gzip 
                   
       - persist_to_workspace:
