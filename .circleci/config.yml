@@ -223,19 +223,16 @@ jobs:
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
               # exit 1
       - run: yum install sudo -y
-      - run: sudo chmod 777 ~/project/.circleci/ansible/inventory.txt        
+      #- run: sudo chmod 777 ~/project/.circleci/ansible/inventory.txt        
       - run:
           name: Add back-end ip to ansible inventory
           command: |
-            # Your code here
+            cd .circleci/ansible
+            sudo chmod 777 inventory.txt        
             aws ec2 describe-instances \
               --query "Reservations[*].Instances[*].PublicIpAddress" \
-              --output text
-
-
-            aws ec2 describe-instances \
-              --query "Reservations[*].Instances[*].PublicIpAddress" \
-              --output text >> ~/project/.circleci/ansible/inventory.txt
+              --output text >> inventory.txt
+              #--output text >> ~/project/.circleci/ansible/inventory.txt
             #exit 1
       - run:
           name: install tar
@@ -294,8 +291,10 @@ jobs:
       - run:
           name: Configure server
           command: |
+            cd .circleci/ansible
+            ansible-playbook -i inventory.txt configure-server.yml 
             
-            ansible-playbook   ~/project/.circleci/ansible/configure-server.yml  -i ~/project/.circleci/ansible/inventory 
+            #ansible-playbook   ~/project/.circleci/ansible/configure-server.yml  -i ~/project/.circleci/ansible/inventory 
             # exit 1
       # Here's where you will add some code to rollback on failure      
       - destroy_environment
