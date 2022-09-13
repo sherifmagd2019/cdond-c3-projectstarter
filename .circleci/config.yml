@@ -265,9 +265,7 @@ jobs:
  
       # attach workspace
       - attach_workspace:
-          at: ~/
-          paths:
-            - project/.circleci/ansible/inventory.txt 
+          at: ~/ 
       - run:
           name: Install dependencies
           command: |
@@ -284,14 +282,15 @@ jobs:
             ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
             #exit 1
-      - run: 
-          name: change 
-          command: |       
-            sudo chmod 744 ~/project/.circleci/ansible/inventory.txt 
+      #- run: 
+      #    name: change 
+      #    command: |       
+      #      sudo chmod 744 ~/project/.circleci/ansible/inventory.txt 
       - run:
           name: Configure server
           command: |
             cd .circleci/ansible
+            sudo chmod 744 inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml 
             
             #ansible-playbook   ~/project/.circleci/ansible/configure-server.yml  -i ~/project/.circleci/ansible/inventory 
