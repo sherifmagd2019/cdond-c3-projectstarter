@@ -37,18 +37,11 @@
     - TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
   
-    - name: Check system information
-      shell:
-       "lsb_release -a"
-      register: os_info
-    
-    - debug:
-      msg: "{{os_info.stdout_lines}}"
+
   
     - name: Run multiple commands
       shell: |
-       date > /tmp/date.txt
-       uptime > /tmp/uptime.txt
+
        sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash 
        sudo nvm install 14.4.0
        sudo apt-get install -y npm
