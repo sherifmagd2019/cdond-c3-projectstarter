@@ -293,7 +293,7 @@ jobs:
             sudo chmod 744 inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml 
             
-            #ansible-playbook   ~/project/.circleci/ansible/configure-server.yml  -i ~/project/.circleci/ansible/inventory 
+
             # exit 1
       # Here's where you will add some code to rollback on failure      
       - destroy_environment
