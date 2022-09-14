@@ -41,13 +41,19 @@
   
     - name: Run multiple commands
       shell: |
-
-       sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash 
-       sudo nvm install 14.4.0
-       sudo apt-get install -y npm
+       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+       sudo apt-get install -y nodejs
+       sudo npm install -g npm@latest
        sudo apt install build-essential
-       nvm ls
-       sudo apt update && apt install sudo curl && curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -
-       sudo npm install pm2 -g && pm2 update
+       sudo npm install pm2 -g
+
+       #sudo apt install nodejs 
+       #sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash 
+       #sudo nvm install 14.4.0
+       #sudo apt-get install -y npm
+       #sudo apt install build-essential
+       #nvm ls
+       #sudo apt update && apt install sudo curl && curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -
+       #sudo npm install pm2 -g && pm2 update
   roles:
       - configure-server 
