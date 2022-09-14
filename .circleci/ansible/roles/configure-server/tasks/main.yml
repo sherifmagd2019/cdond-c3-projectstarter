@@ -15,7 +15,21 @@
   apt:
     autoremove: yes
 
-#- name: "install dependencies."
+
+- name: Run multiple commands
+  shell: |
+       echo -e "\n get node "
+       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+       echo -e "\n install node"
+       sudo apt-get install -y nodejs
+       echo -e "\n install npm"
+       sudo npm install -g npm@latest
+       sudo apt install build-essential
+       echo -e "\n install pm2"
+       sudo npm install pm2 -g
+  register: command_output
+- debug:
+       var: command_output.stdout_lines #- name: "install dependencies."
 #  become: true
 #  apt:
 #    name: ["nodejs", "npm"]
