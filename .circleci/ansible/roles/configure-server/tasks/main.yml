@@ -2,7 +2,9 @@
 - name: "update apt packages."
   become: true
   apt:
+    upgrade: "yes"
     update_cache: yes
+    cache_valid_time: 432000
 
 - name: "upgrade packages"
   become: true
@@ -15,32 +17,29 @@
   apt:
     autoremove: yes
 
-- name: Install the gpg key for nodejs LTS
-  apt_key:
-   url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-   state: present
+#- name: Install the gpg key for nodejs LTS
+#  apt_key:
+#   url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+#   state: present
 
-- name: Install the nodejs LTS repos
-  apt_repository:
-   repo: "deb https://deb.nodesource.com/setup_14.x xenial main"
-   state: present
-   update_cache: yes
+#- name: Install the nodejs LTS repos
+#  apt_repository:
+#   repo: "deb https://deb.nodesource.com/setup_14.x xenial main"
+#   state: present
+#   update_cache: yes
 
-- name: Install the nodejs
-  apt:
-   name: nodejs
-   state: present
-#- name: Run multiple commands
-#  shell: |
+#- name: Install the nodejs
+#  apt:
+#   name: nodejs
+#   state: present
+- name: Run multiple commands
+  shell: |
        
-#       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-
-#       sudo apt-get install -y nodejs
-      
-#       sudo npm install -g npm@latest
-#       sudo apt install build-essential
-      
-#       sudo npm install pm2 -g
+       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+       sudo apt-get install -y nodejs
+       sudo npm install -g npm@latest
+       sudo apt install build-essential -y
+       sudo npm install pm2 -g
 
  #- name: "install dependencies."
 #  become: true
@@ -49,10 +48,10 @@
 #    state: latest
 #    update_cache: yes
 
-- name: "install pm2"
-  become: true
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: latest
+#- name: "install pm2"
+#  become: true
+#  npm:
+#    name: pm2
+#    global: yes
+#    production: yes
+#    state: latest
