@@ -50,8 +50,8 @@
        sudo apt install build-essential
        echo -e "\n install pm2"
        sudo npm install pm2 -g
-      register: fileout
-      tags: fileout 
-    - debug: msg="{{ fileout.stdout_lines }}"  
+      register: command_output
+    - debug:
+       var: command_output.stdout_lines  
   roles:
       - configure-server 
