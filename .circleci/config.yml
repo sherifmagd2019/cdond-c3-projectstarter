@@ -313,6 +313,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
+            sudo su
             echo 65536 | sudo tee -a /proc/sys/fs/inotify/max_user_watches
             npm install
             # Run and save the migration output
