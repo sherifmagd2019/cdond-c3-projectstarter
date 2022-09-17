@@ -354,8 +354,8 @@ jobs:
           command: |
             # your code here
             sudo yum install -y tar gzip
-            sudo yum install python37
-            sudo yum install Ansible
+            sudo yum install -y python37
+            sudo yum install -y Ansible
 
       - run:
           name: Get backend url
