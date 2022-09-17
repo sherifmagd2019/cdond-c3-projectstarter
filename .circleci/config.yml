@@ -353,6 +353,9 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
+            sudo yum install -y tar gzip
+            sudo yum install python37
+            sudo yum install Ansible
 
       - run:
           name: Get backend url
@@ -433,7 +436,9 @@ workflows:
       - configure-infrastructure:
           requires: [deploy-infrastructure] 
       - run-migrations:
-          requires: [configure-infrastructure]      
+          requires: [configure-infrastructure] 
+      - deploy-frontend:
+          requires: [run-migrations]         
   send-notification:
     jobs:
       - notify:
