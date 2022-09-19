@@ -1,0 +1,10 @@
+PS J:\udacity\project3\cdond-c3-projectstarter> aws iam create-access-key --user-name sherifmagd
+{
+    "AccessKey": {
+        "UserName": "sherifmagd",
+        "AccessKeyId": "AKIASM73MVA7V75NRTV7",
+        "Status": "Active",
+        "SecretAccessKey": "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",
+        "CreateDate": "2022-09-16T12:46:21+00:00"
+    }
+}
