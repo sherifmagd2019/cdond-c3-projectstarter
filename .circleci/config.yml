@@ -2,9 +2,9 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.9.3 
 #https://github.com/udacity/cdond-c3-projectstarter/blob/master/instructions/3-configuration-management.md
-
-
-
+#https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
+#https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
+#https://aws.amazon.com/premiumsupport/knowledge-center/ec2-launch-issue/
 
 commands:
   # Exercise: Reusable Job Code
@@ -215,6 +215,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
+              --tags project=udapeople \
               --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
               #exit 1
@@ -224,6 +225,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
+              --tags project=udapeople \
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
               # exit 1
