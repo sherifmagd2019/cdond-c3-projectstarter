@@ -355,7 +355,7 @@ jobs:
            
           command: |
             # your code here
-            /usr/bin/sudo -i 
+             
             #apt-get install sudo -y
             #usermod -aG sudo ubuntu
             apt update  -y
