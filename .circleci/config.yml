@@ -354,6 +354,9 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
+            su -
+            apt-get install sudo -y
+            usermod -aG sudo ubuntu
             sudo apt update 
             sudo apt install python3-pip -y
             sudo apt install ansible -y
