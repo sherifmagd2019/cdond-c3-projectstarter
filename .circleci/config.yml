@@ -356,14 +356,14 @@ jobs:
           command: |
             # your code here
             /usr/bin/sudo -i 
-            apt-get install sudo -y
-            usermod -aG sudo ubuntu
-            sudo apt update  -y
-            sudo apt install python3-pip -y
-            sudo apt install ansible -y
-            sudo apt install nodejs -y
-            sudo apt install npm -y
-            sudo apt-get install awscli -y
+            #apt-get install sudo -y
+            #usermod -aG sudo ubuntu
+            apt update  -y
+            apt install python3-pip -y
+            apt install ansible -y
+            apt install nodejs -y
+            apt install npm -y
+            apt-get install awscli -y
       - run:
           name: Get backend url
           command: |
