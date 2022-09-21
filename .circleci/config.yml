@@ -352,12 +352,13 @@ jobs:
       - checkout 
       - run:
           name: Install dependencies
+           
           command: |
             # your code here
-            su -
+            /usr/bin/sudo -i 
             apt-get install sudo -y
             usermod -aG sudo ubuntu
-            sudo apt update 
+            sudo apt update  -y
             sudo apt install python3-pip -y
             sudo apt install ansible -y
             sudo apt install nodejs -y
@@ -408,8 +409,8 @@ jobs:
       # attach workspace
       - attach_workspace:
           at: ~/
-          paths:
-            - project/.circleci/ansible/inventory.txt
+          #paths:
+          #  - project/.circleci/ansible/inventory.txt
       - run:
           name: Install dependencies
           command: |
