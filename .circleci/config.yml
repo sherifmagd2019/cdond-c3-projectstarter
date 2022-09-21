@@ -345,7 +345,8 @@ jobs:
   deploy-frontend:
     docker:
       # Docker image here that supports AWS CLI
-      - image: amazon/aws-cli
+      #- image: amazon/aws-cli
+      - image: ubuntu:latest
     steps:
       # Checkout code from git
       - checkout 
@@ -353,7 +354,12 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-
+            sudo apt update 
+            sudo apt install python3-pip -y
+            sudo apt install ansible -y
+            sudo apt install nodejs -y
+            sudo apt install npm -y
+            sudo apt-get install awscli -y
       - run:
           name: Get backend url
           command: |
