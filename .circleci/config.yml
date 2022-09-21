@@ -5,7 +5,7 @@ orbs:
 #https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
 #https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
 #https://aws.amazon.com/premiumsupport/knowledge-center/ec2-launch-issue/
-
+#s3   udapeople-re25fdg4r5pmz437
 commands:
   # Exercise: Reusable Job Code
   print_pipeline_id:
@@ -364,8 +364,19 @@ jobs:
           name: Get backend url
           command: |
             # your code here
+            #export API_URL="http://${BACKEND_IP}:3030"
+            #echo "${API_URL}"
+
+            export BACKEND_IP=$(aws ec2 describe-instances  --query "Reservations[*].Instances[*].PublicIpAddress"  --output text)
             export API_URL="http://${BACKEND_IP}:3030"
-            echo "${API_URL}"
+            echo "API_URL = ${API_URL}"
+            echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
+            cat frontend/.env
+
+            
+
+
+
       - run:
           name: Deploy frontend objects
           command: |
@@ -432,14 +443,15 @@ workflows:
       - scan-frontend:
           requires: [build-frontend]   
       - deploy-infrastructure:
-          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-         # filters:
-         #   branches:
-         #     only: [test-feature-branch]     
+          requires: [test-frontend, test-backend, scan-frontend, scan-backend]  #     only: [test-feature-branch]     
       - configure-infrastructure:
           requires: [deploy-infrastructure] 
       - run-migrations:
-          requires: [configure-infrastructure]      
+          requires: [configure-infrastructure]     
+      - deploy-frontend:
+          requires: [run-migrations]   # filters:
+             
+           
   send-notification:
     jobs:
       - notify:
