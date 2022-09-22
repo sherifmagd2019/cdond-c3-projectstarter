@@ -1,0 +1,25 @@
+---
+   - name: create dir 
+     become: true
+     ansible.builtin.file:
+     path: /home/ubuntu/uda_app
+     state: directory
+     #mode: '0755'
+   - name:   copy the files (compiled back-end files)
+     become: true
+     copy:
+     src: ~/project/artifact.tar.gz
+     dest: /home/ubuntu/uda_app/artifact.tar.gz
+
+   - name: untar
+     become: true
+     shell: |
+       cd /home/ubuntu/uda_app
+       tar xvzf artifact.tar.gz -C .
+   - name: start server
+     become: true
+     shell: |
+       cd /home/ubuntu/uda_app
+       npm install
+       pm2 stop default
+       pm2 start npm -- start 
