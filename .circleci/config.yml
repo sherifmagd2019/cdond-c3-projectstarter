@@ -443,6 +443,41 @@ jobs:
             npm install
             pm2 stop default
             pm2 start npm -- start
+
+  smoke-test:
+    docker:
+      # Lightweight Docker image 
+      - image: ubuntu:latest
+    steps:
+      # Checkout code from git
+      - run:
+          name: Install dependencies
+          command: |
+            # your code here
+            apt-get update && DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get install -y tzdata
+            apt install  apt-utils -y
+            apt-get install -y tar
+            apt-get -y install gzip
+            apt install python3-pip -y
+            apt install ansible -y
+            apt install nodejs -y
+            apt install npm -y
+            apt-get install awscli -y
+      - run:
+          name: Get backend url
+          command: |
+            # your code here
+      - run:
+          name: Backend smoke test.
+          command: |
+            # your code here
+      - run:
+          name: Frontend smoke test.
+          command: |
+            # your code here
+      # Here's where you wil
+
+
  
 workflows:
   default:
