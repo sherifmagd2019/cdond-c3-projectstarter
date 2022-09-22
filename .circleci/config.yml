@@ -395,7 +395,7 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: python:3.7-alpine3.11
+      - image: ubuntu:latest
     steps:
       # Checkout code from git
       - checkout
@@ -416,8 +416,15 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            apk add --update ansible 
-            apk update && apk add nodejs
+            apt-get update && DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get install -y tzdata
+            apt install  apt-utils -y
+            apt-get install -y tar
+            apt-get -y install gzip
+            apt install python3-pip -y
+            apt install ansible -y
+            apt install nodejs -y
+            apt install npm -y
+            apt-get install awscli -y
       - run:
           name: Deploy backend
           command: |
@@ -455,7 +462,8 @@ workflows:
           requires: [configure-infrastructure]     
       - deploy-frontend:
           requires: [run-migrations]   # filters:
-             
+      - deploy-backend:
+          requires: [run-migrations]       
            
   send-notification:
     jobs:
