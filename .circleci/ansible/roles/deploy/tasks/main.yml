@@ -6,7 +6,7 @@
 
 - name: copy backend dist
   copy:
-    src: project/artifact.tar.gz
+    src: ~/project/artifact.tar.gz
     dest: ~/backend-app
 
 
