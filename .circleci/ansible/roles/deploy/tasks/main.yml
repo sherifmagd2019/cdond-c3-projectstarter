@@ -1,26 +1,30 @@
 ---
-   - name: create dir 
-     become: true
-     file:
-       path: /home/ubuntu/uda_app
-       state: directory
-       
-     #mode: '0755'
-   - name:   copy  (compiled back-end files)
-     become: true
-     copy:
-       src: ~/project/artifact.tar.gz
-       dest: /home/ubuntu/uda_app/artifact.tar.gz
+- name: "Creates backend app directory"
+  file:
+    path: ~/backend-app
+    state: directory
 
-   - name: untar
-     become: true
-     shell: |
-            cd /home/ubuntu/uda_app
-            tar xvzf artifact.tar.gz -C .
-   - name: start server
-     become: true
-     shell: |
-            cd /home/ubuntu/uda_app
-            npm install
-            pm2 stop default
-            pm2 start npm -- start 
+- name: "Unarchive backend files"
+  unarchive:
+    src: artifact.tar.gz
+    dest: ~/backend-app
+
+- name: "Installing Node Dependencies"
+  shell: |
+    cd ~/backend-app
+    npm i
+- name: "Executing Node app with PM2"
+  shell: |
+    cd ~/backend-app/dist
+    pm2 stop default
+    pm2 start main.js
+  register: execute_node
+
+- name: print message
+  debug:
+    msg: "{{ execute_node.stdout_lines }}"
+
+- name: "Configure pm2 to start as service"
+  shell: |
+    sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
+    pm2 save
