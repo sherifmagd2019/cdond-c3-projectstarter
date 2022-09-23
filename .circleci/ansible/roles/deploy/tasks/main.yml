@@ -4,9 +4,15 @@
     path: ~/backend-app
     state: directory
 
+- name: copy backend dist
+  copy:
+    src: project/artifact.tar.gz
+    dest: ~/backend-app
+
+
 - name: "Unarchive backend files"
   unarchive:
-    src: artifact.tar.gz
+    src: ~/backend-app/artifact.tar.gz
     dest: ~/backend-app
 
 - name: "Installing Node Dependencies"
