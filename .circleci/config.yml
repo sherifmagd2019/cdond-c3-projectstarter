@@ -327,7 +327,7 @@ jobs:
             #npm fund
             #npm audit fix
             #npm run migrations > migrations_dump.txt
-            #exit 1
+            #exit 1 #
       - run:
           name: Send migration results to memstash
           command: |
