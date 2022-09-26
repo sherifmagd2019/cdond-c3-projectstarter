@@ -22,7 +22,7 @@ describe('Employee Remover', () => {
         employeeId: 100, //change this to 100 to make the test pass
         isActive: false,
       };
-
+//
       const activateEmployeeCommand = new ActivateEmployee(
         params.employeeId,
         params.isActive,
