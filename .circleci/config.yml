@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   slack: circleci/slack@4.9.3 
+#nvm use 14.15.0  
 #https://github.com/udacity/cdond-c3-projectstarter/blob/master/instructions/3-configuration-management.md
 #https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
 #https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
