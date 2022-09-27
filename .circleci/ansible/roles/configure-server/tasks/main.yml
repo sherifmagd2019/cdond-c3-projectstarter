@@ -17,42 +17,18 @@
   apt:
     autoremove: yes
 
-#- name: Install the gpg key for nodejs LTS
-#  apt_key:
-#   url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-#   state: present
+ 
 
-#- name: Install the nodejs LTS repos
-#  apt_repository:
-#   repo: "deb https://deb.nodesource.com/setup_14.x xenial main"
-#   state: present
-#   update_cache: yes
-
-#- name: Install the nodejs
-#  apt:
-#   name: nodejs
-#   state: present
 - name: Run multiple commands
   shell: |
-    #curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    #sudo apt-get install -y nodejs
-    #sudo npm install -g npm@latest
-    #sudo apt install build-essential -y
-    #sudo npm install pm2 -g
 
-    #curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo -E bash -
-    #source ~/.bashrc
-    #echo nvm --version
-    #sudo nvm install 13.8.0
-    #sudo npm install pm2 -g 
+      sudo apt install curl
+      curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+      source ~/.bashrc  
+      nvm install 13.8.0
+      sudo npm install pm2 -g
 
-    sudo apt install curl
-    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
-    source ~/.bashrc  
-    nvm install 13.8.0
-    sudo npm install pm2 -g
-
-
+  
  #- name: "install dependencies."
 #  become: true
 #  apt:
