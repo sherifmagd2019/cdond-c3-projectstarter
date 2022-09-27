@@ -40,11 +40,18 @@
     #sudo apt install build-essential -y
     #sudo npm install pm2 -g
 
-    curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo -E bash -
-    source ~/.bashrc
-    echo nvm --version
-    sudo nvm install 13.8.0
-    sudo npm install pm2 -g 
+    #curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo -E bash -
+    #source ~/.bashrc
+    #echo nvm --version
+    #sudo nvm install 13.8.0
+    #sudo npm install pm2 -g 
+
+    sudo apt install curl
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+    source ~/.bashrc  
+    nvm install 13.8.0
+    sudo npm install pm2 -g
+
 
  #- name: "install dependencies."
 #  become: true
