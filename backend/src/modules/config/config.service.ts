@@ -45,7 +45,7 @@ export class ConfigService {
       TYPEORM_USERNAME: Joi.string().default('postgres'),
       TYPEORM_PASSWORD: Joi.string().default('mypassword'),
       TYPEORM_DATABASE: Joi.string().default('database-1'),
-      TYPEORM_HOST: Joi.string().default('database-1.ch4a9dhlinpw.us-east-1.rds.amazonaws.com'),
+      TYPEORM_HOST: Joi.string().default('database-1.cdqkqg7wsvqz.us-east-1.rds.amazonaws.com'),
       TYPEORM_PORT: Joi.number()
         .integer()
         .default(5432),
