@@ -44,13 +44,11 @@
 #    npm install pm2 -g
 
 - name: Run multiple commands
-  shell: |
-
-      sudo apt install curl
-      curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
-      source ~/.bashrc  
-      nvm install 13.8.0
-      npm install pm2 -g
+  shell: | 
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+    source ~/.bashrc  
+    nvm install 13.8.0
+    npm install pm2 -g
 
   
 #- name: "install dependencies."
