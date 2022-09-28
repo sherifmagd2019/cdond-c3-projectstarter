@@ -44,7 +44,7 @@ export class ConfigService {
       TYPEORM_ENTITIES: Joi.string().default('./src/modules/domain/**/*.entity.ts'),
       TYPEORM_USERNAME: Joi.string().default('postgres'),
       TYPEORM_PASSWORD: Joi.string().default('mypassword'),
-      TYPEORM_DATABASE: Joi.string().default('database-1'),
+      TYPEORM_DATABASE: Joi.string().default('postgres'),
       TYPEORM_HOST: Joi.string().default('database-1.cdqkqg7wsvqz.us-east-1.rds.amazonaws.com'),
       TYPEORM_PORT: Joi.number()
         .integer()

@@ -17,6 +17,9 @@
 
 - name: "Installing Node Dependencies"
   shell: |
+    curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+    source ~/.bashrc
+    nvm install 13.8.0
     cd ~/backend-app
      
     npm install  
