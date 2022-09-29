@@ -7,6 +7,8 @@ orbs:
 #https://aws.amazon.com/premiumsupport/knowledge-center/troubleshoot-iam-policy-issues/
 #https://aws.amazon.com/premiumsupport/knowledge-center/ec2-launch-issue/
 #s3   udapeople-re25fdg4r5pmz437
+#J:\udacity\project3\cdond-c3-projectstarter\backend\src\modules\config\config.service.ts
+
 commands:
   # Exercise: Reusable Job Code
   print_pipeline_id:
