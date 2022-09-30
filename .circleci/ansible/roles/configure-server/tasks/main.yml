@@ -33,16 +33,16 @@
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   args:
     executable: /bin/bash
-    chdir: "{{ ansible_env.HOME }}"
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    chdir: "/home/ubuntu"
+    creates: "/home/ubuntu/.nvm/nvm.sh"
 
 - name: "node"
   shell: >
-    . {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install 13.8.0
+    . /home/ubuntu/.nvm/nvm.sh && nvm install 13.8.0
   args:
     executable: /bin/bash
-    chdir: "{{ ansible_env.HOME }}"
-    creates: "{{ ansible_env.HOME }}/.nvm/versions/{{ item }}"
+    chdir: "/home/ubuntu"
+    creates: "/home/ubuntu/.nvm/versions/{{ item }}"
   loop:
     - node
  
