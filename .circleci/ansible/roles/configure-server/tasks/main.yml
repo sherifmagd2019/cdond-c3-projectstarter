@@ -72,12 +72,12 @@
     . ~/.profile
 
     # Tests
-    node -v
-    npm version
-    npx -v
+    echo  node -v
+    echo npm version
+    echo npx -v
 
     sudo npm install pm2 -g
-
+    echo pm2 -v
 
  
 
