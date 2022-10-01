@@ -480,7 +480,8 @@ jobs:
       # Lightweight Docker image 
       - image: ubuntu:latest
     steps:
-      # Checkout code from git
+      - checkout
+          
       - run:
           name: Install dependencies
           command: |
@@ -533,18 +534,54 @@ jobs:
   cloudfront-update:
     docker:
       # Docker image here that supports AWS CLI
-      - image: cimg/base:stable
+      - image: ubuntu:latest
     steps:
-      # Checkout code from git
+      - checkout
+          
       - run:
           name: Install dependencies
           command: |
             # your code here
+                  apt-get update && DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get install -y tzdata
+            apt install  apt-utils -y
+            apt-get install -y tar
+            apt install curl -y
+            apt-get -y install gzip
+            apt install python3-pip -y
+            apt install ansible -y
+            apt install nodejs -y
+            apt install npm -y
+            apt-get install awscli -y
       - run:
           name: Update cloudfront distribution
           command: |
             # your code here
-
+            cloudformation deploy \
+            --template-file .circleci/files/cloudfront.yml \
+            --stack-name InitialStack \
+            --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --tags project=udapeople
+  
+  
+cleanup:
+    docker:
+      - image: ubuntu:latest# Docker image here
+    steps:
+      # Checkout code from git
+      - run:
+          name: Get old stack workflow id
+          command: |
+            # your code here
+            export OldWorkflowID="the id here"
+            export STACKS=[] #put the list of stacks here
+      - run:
+          name: Remove old stacks and files
+          command: |
+            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
+            then
+              # your code here
+            fi
+            
  
 workflows:
   default:
