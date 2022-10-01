@@ -65,5 +65,7 @@
     npm version
     npx -v
 
-
  
+    sudo npm install pm2 -g
+
+  
