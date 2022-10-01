@@ -32,27 +32,27 @@
 #  apt:
 #   name: nodejs
 #   state: present
-#- name: Run multiple commands
-#  shell: |
-    #curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-    #sudo apt-get install -y nodejs
-    #sudo npm install -g npm@latest
-    #sudo apt install build-essential -y
-    #sudo npm install pm2 -g
+- name: Run multiple commands
+  shell: |
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    sudo npm install -g npm@latest
+    sudo apt install build-essential -y
+    sudo npm install pm2 -g
 
- 
+     
 
-- name: "install dependencies."
-  become: true
-  apt:
-    name: ["nodejs", "npm"]
-    state: latest
-    update_cache: yes
+ #- name: "install dependencies."
+#  become: true
+#  apt:
+#    name: ["nodejs", "npm"]
+#    state: latest
+#    update_cache: yes
 
-- name: "install pm2"
-  become: true
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: latest
+#- name: "install pm2"
+#  become: true
+#  npm:
+#    name: pm2
+#    global: yes
+#    production: yes
+#    state: latest
