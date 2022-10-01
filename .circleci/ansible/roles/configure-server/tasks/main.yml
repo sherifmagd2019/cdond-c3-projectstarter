@@ -28,49 +28,42 @@
 #   state: present
 #   update_cache: yes
 
-- name: "nvm"
-  shell: >
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-  args:
-    executable: /bin/bash
-    chdir: "/home/ubuntu"
-    creates: "/home/ubuntu/.nvm/nvm.sh"
-
-- name: "node"
-  shell: >
-    . /home/ubuntu/.nvm/nvm.sh && nvm install 13.8.0
-  args:
-    executable: /bin/bash
-    chdir: "/home/ubuntu"
-    creates: "/home/ubuntu/.nvm/versions/{{ item }}"
-  loop:
-    - node
+ 
+ 
  
 #   name: nodejs
 #   state: present
-#- name: Run multiple commands
-#  shell: |
-    #curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-    #sudo apt-get install -y nodejs
-    #sudo npm install -g npm@latest
-    #sudo apt install build-essential -y
-    #sudo npm install pm2 -g
+- name: Run multiple commands
+  shell: |
+    # Choose your version / architecture
+    VERSION=v13.8.0
+    DISTRO=linux-x64
 
-    #curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
-    #source ~/.bashrc 
-    #nvm install 13.8.0  
-    #sudo npm install pm2 -g
- #- name: "install dependencies."
-#  become: true
-#  apt:
-#    name: ["nodejs", "npm"]
-#    state: latest
-#    update_cache: yes
+    # Download
+      wget https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.xz
 
-#- name: "install pm2"
-#  become: true
-#  npm:
-#    name: pm2
-#    global: yes
-#    production: yes
-#    state: latest
+    # Install ie extract archive to /usr/local/lib/nodejs
+    sudo mkdir -p /usr/local/lib/nodejs
+    sudo tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs 
+
+    # Create symlinks
+    sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
+    sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
+    sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
+
+    # Update profile
+    tee -a ~/.profile << ENDap
+    # Nodejs
+    VERSION= v13.8.0 
+    DISTRO= linux-x64
+    export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+    ENDap
+    . ~/.profile
+
+    # Tests
+    node -v
+    npm version
+    npx -v
+
+
+ 
