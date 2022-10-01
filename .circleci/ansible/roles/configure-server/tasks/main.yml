@@ -28,19 +28,30 @@
 #   state: present
 #   update_cache: yes
 
- 
- 
- 
+#- name: Install the nodejs
+#  apt:
 #   name: nodejs
 #   state: present
 - name: Run multiple commands
   shell: |
+    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    sudo npm install -g npm@latest
+    sudo apt install build-essential -y
+    sudo npm install pm2 -g
+
+    # Uninstall viaPackage installed nodejs version
+    sudo apt-get remove --purge nodejs
+
     # Choose your version / architecture
+    # Find available versions list there:
+    # https://nodejs.org/en/download/releases/
+
     VERSION=v13.8.0
     DISTRO=linux-x64
 
     # Download
-      wget https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.xz
+    wget https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.xz
 
     # Install ie extract archive to /usr/local/lib/nodejs
     sudo mkdir -p /usr/local/lib/nodejs
@@ -54,8 +65,8 @@
     # Update profile
     tee -a ~/.profile << ENDap
     # Nodejs
-    VERSION= v13.8.0 
-    DISTRO= linux-x64
+    VERSION=v13.8.0
+    DISTRO=linux-x64
     export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
     ENDap
     . ~/.profile
@@ -65,16 +76,22 @@
     npm version
     npx -v
 
-#- name: pm2
-#  shell: | 
-#    sudo npm install pm2 -g
-#    sudo curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -
-#    export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
+    sudo npm install pm2 -g
 
-- name: "install pm2"
-  become: true
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present  
+
+ 
+
+ #- name: "install dependencies."
+#  become: true
+#  apt:
+#    name: ["nodejs", "npm"]
+#    state: latest
+#    update_cache: yes
+
+#- name: "install pm2"
+#  become: true
+#  npm:
+#    name: pm2
+#    global: yes
+#    production: yes
+#    state: latest
