@@ -34,13 +34,22 @@
 #   state: present
 - name: Run multiple commands
   shell: |
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-    sudo npm install -g npm@latest
-    sudo apt install build-essential -y
-    sudo npm install pm2 -g
+    #curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+    #sudo apt-get install -y nodejs
+    #sudo npm install -g npm@latest
+    #sudo apt install build-essential -y
+    #sudo npm install pm2 -g
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    source ~/.bashrc
+    nvm install 13.8.0
+    # Tests
+    echo  node -v
+    echo npm version
+    echo npx -v
 
-     
+    sudo npm install pm2 -g
+    echo pm2 -v
+ 
 
  #- name: "install dependencies."
 #  become: true
