@@ -65,7 +65,8 @@
     npm version
     npx -v
 
- 
+- name: pm2
+  shell: | 
     sudo npm install pm2 -g
     sudo curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -
     export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
