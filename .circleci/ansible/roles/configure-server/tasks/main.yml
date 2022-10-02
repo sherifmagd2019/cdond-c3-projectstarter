@@ -34,14 +34,37 @@
 #   state: present
 - name: Run multiple commands
   shell: |
-    #curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-    #sudo apt-get install -y nodejs
-    #sudo npm install -g npm@latest
-    #sudo apt install build-essential -y
-    #sudo npm install pm2 -g
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-    source ~/.bashrc
-    nvm install 13.8.0
+    # Uninstall viaPackage installed nodejs version
+    sudo apt-get remove --purge nodejs
+
+    # Choose your version / architecture
+    # Find available versions list there:
+    # https://nodejs.org/en/download/releases/
+
+    VERSION=v13.8.0
+    DISTRO=linux-x64
+
+    # Download
+    wget https://nodejs.org/download/release/v13.8.0/node-v13.8.0-linux-x64.tar.xz
+
+    # Install ie extract archive to /usr/local/lib/nodejs
+    sudo mkdir -p /usr/local/lib/nodejs
+    sudo tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs 
+
+    # Create symlinks
+    sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
+    sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
+    sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
+
+    # Update profile
+    tee -a ~/.profile << ENDap
+    # Nodejs
+    VERSION=v13.8.0
+    DISTRO=linux-x64
+    export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+    ENDap
+    . ~/.profile
+
     # Tests
     echo  node -v
     echo npm version
@@ -49,7 +72,6 @@
 
     sudo npm install pm2 -g
     echo pm2 -v
- 
 
  #- name: "install dependencies."
 #  become: true
