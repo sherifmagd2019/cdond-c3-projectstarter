@@ -91,6 +91,8 @@ jobs:
           password: $DOCKERHUB_PASSWORD 
     steps:
       - checkout
+      - restore_cache:
+          keys: [frontend-build]
       - run:
           name: Build front-end
           command: |
@@ -98,6 +100,9 @@ jobs:
             npm install
             npm run build
             #npm install oauth-sign@^0.9.0
+      - save_cache:
+          paths: [frontend/node_modules]
+          key: frontend-build      
       - slack/notify:
            event: pass
            template: basic_success_1
@@ -112,12 +117,17 @@ jobs:
           password: $DOCKERHUB_PASSWORD 
     steps:
       - checkout
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: Back-end build
           command: |
             cd backend
             npm install
             npm run build
+      - save_cache:
+          paths: [backend/node_modules]
+          key: backend-build      
       - slack/notify:
            event: pass
            template: basic_success_1
