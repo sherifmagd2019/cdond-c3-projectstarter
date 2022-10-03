@@ -24,6 +24,8 @@
     cd ~/backend-app
      
     npm install  
+    # installing peer dependancies
+  
     npm run build 
 - name: "Executing Node app with PM2"
   shell: |
