@@ -24,6 +24,11 @@ commands:
 
   # Exercise - Rollback
   destroy_environment:
+    parameters:
+      # Add parameter here   
+      workflow_id:
+        default: "${CIRCLE_WORKFLOW_ID:0:7}"
+        type: string
     steps:
       - run:
           name: Destroy environment
@@ -47,7 +52,7 @@ commands:
           command: |  
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
             SUCCESS=$(curl --insecure https://kvdb.io/8Zr83qBwdw3ySFNfLwWWk/migration_<< parameters.workflow_ID >>)
-            SUCCESS = 1
+            #SUCCESS = 1
             if(( $SUCCESS==1 )); 
             then
               cd ~/project/backend
