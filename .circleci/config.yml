@@ -40,9 +40,9 @@ commands:
             aws cloudformation delete-stack --stack-name "udapeople-backend-<<parameters.workflow_id>>"
             aws cloudformation delete-stack --stack-name "udapeople-frontend-<<parameters.workflow_id>>"
             
-            #exit 1
+            exit 1
 
- 
+  
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
@@ -551,13 +551,14 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
                 # Change this to 0 after the job fails
-              exit 1
+              exit 0
             else
               exit 1
             fi
-      
-     
- 
+      # Here's where you wil
+      - destroy-environment
+      - revert-migrations
+
   cloudfront-update:
     docker:
       # Docker image here that supports AWS CLI
