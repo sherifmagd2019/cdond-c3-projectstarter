@@ -39,6 +39,7 @@ commands:
             aws cloudformation delete-stack --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
             aws s3 rm s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             aws cloudformation delete-stack --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
+   
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
     parameters:
@@ -552,6 +553,10 @@ jobs:
               exit 1
             fi
       # Here's where you wil
+      - destroy_environment
+      - revert-migrations
+
+
   cloudfront-update:
     docker:
       # Docker image here that supports AWS CLI
