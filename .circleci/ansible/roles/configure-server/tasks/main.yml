@@ -71,10 +71,10 @@
     echo npx -v
 
     sudo npm install pm2 -g
-    npx pm2 start
-    export PATH=/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin:$PATH
-    npx pm2 start
-    echo pm2 -v
+    #npx pm2 start
+    #export PATH=/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin:$PATH
+    #npx pm2 start
+    #echo pm2 -v
 #
  #- name: "install dependencies."
 #  become: true
