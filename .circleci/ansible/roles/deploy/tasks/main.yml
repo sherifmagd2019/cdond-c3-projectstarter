@@ -20,16 +20,15 @@
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
     source ~/.bashrc
     nvm install 13.8.0
-    
+    export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
     cd ~/backend-app
      
     npm install  
     # installing peer dependancies
   
     npm run build 
-    npm start
-- name: "Executing Node app with PM2"
-  shell: |
+    #npm start
+
     export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
     cd ~/backend-app/dist
     pm2 stop default
