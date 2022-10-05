@@ -27,19 +27,16 @@
     # installing peer dependancies
   
     npm run build 
-    #npm start
+    npm start &
 - name: "Executing Node app with PM2"
   shell: |
     export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
     cd ~/backend-app/dist
     pm2 stop default
     pm2 start main.js
-  register: execute_node
+   
 #
-- name: print message
-  debug:
-    msg: "{{ execute_node.stdout_lines }}"
-
+ 
 #- name: "Configure pm2 to start as service"
 #  shell: |
 #    sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
