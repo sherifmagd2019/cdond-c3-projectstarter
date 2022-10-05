@@ -27,7 +27,7 @@
     # installing peer dependancies
   
     npm run build 
-    npm start &
+    #npm start &
 - name: "Executing Node app with PM2"
   shell: |
     export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
