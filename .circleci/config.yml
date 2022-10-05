@@ -648,8 +648,8 @@ workflows:
 #          requires: [run-migrations]   # filters:
       - deploy-backend 
 #          requires: [run-migrations]       
-      - smoke-test: 
-          requires: [deploy-backend, deploy-frontend]     
+      - smoke-test 
+#          requires: [deploy-backend, deploy-frontend]     
       - cloudfront-update:
           requires: [smoke-test]
   send-notification:
