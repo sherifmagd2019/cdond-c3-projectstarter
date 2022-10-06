@@ -580,6 +580,7 @@ jobs:
             apt install nodejs -y
             apt install npm -y
             apt-get install awscli -y
+            apt  install awscli -y
       - run:
           name: Install dependancies - Backup Old Workflow ID to kvdb.io
           command: |
