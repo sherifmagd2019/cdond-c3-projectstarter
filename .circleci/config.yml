@@ -562,25 +562,26 @@ jobs:
   cloudfront-update:
     docker:
       # Docker image here that supports AWS CLI
-      - image: ubuntu:latest
+      - image: amazon/aws-cli
+      #- image: ubuntu:latest
     steps:
       - checkout
           
-      - run:
-          name: Install dependencies
-          command: |
-            # your code here
-            apt-get update && DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get install -y tzdata
-            apt install  apt-utils -y
-            apt-get install -y tar
-            apt install curl -y
-            apt-get -y install gzip
-            apt install python3-pip -y
-            apt install ansible -y
-            apt install nodejs -y
-            apt install npm -y
-            apt-get install awscli -y
-            apt  install awscli -y
+    #  - run:
+    #      name: Install dependencies
+    #      command: |
+    #        # your code here
+    #        apt-get update && DEBIAN_FRONTEND="noninteractive" TZ="America/New_York" apt-get install -y tzdata
+    #        apt install  apt-utils -y
+    #        apt-get install -y tar
+    #        apt install curl -y
+    #        apt-get -y install gzip
+    #        apt install python3-pip -y
+    #        apt install ansible -y
+    #        apt install nodejs -y
+    #        apt install npm -y
+    #        apt-get install awscli -y
+    #        apt  install awscli -y
       - run:
           name: Install dependancies - Backup Old Workflow ID to kvdb.io
           command: |
