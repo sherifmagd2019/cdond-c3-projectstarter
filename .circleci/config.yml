@@ -601,11 +601,11 @@ jobs:
             --tags project=udapeople
   
   
-cleanup:
+  cleanup:
     docker:
       - image: amazon/aws-cli
     steps:
-      - Checkout 
+      - checkout 
       - run:
           name: Get old stack workflow id
           command: |
