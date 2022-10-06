@@ -603,7 +603,7 @@ jobs:
   
 cleanup:
     docker:
-      - image: ubuntu:latest    
+      - image: amazon/aws-cli
     steps:
       - Checkout 
       - run:
@@ -656,6 +656,8 @@ workflows:
 #          requires: [deploy-backend, deploy-frontend]     
       - cloudfront-update:
           requires: [smoke-test]
+      - cleanup:
+          requires: [cloudfront-update]    
   send-notification:
     jobs:
       - notify:
