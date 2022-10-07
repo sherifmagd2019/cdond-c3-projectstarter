@@ -76,7 +76,14 @@
      
     #echo pm2 -v
 
- 
+- name: Update bashrc  
+  lineinfile:
+        dest: /home/ubuntu/.bashrc
+        line: "export PATH=/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin:$PATH"
+- name: Update bashrc  
+  lineinfile:
+        dest: /home/ubuntu/.bashrc
+        line: "export PATH=/home/ubuntu/.nvm/versions/node/v13.8.0/bin/pm2:$PATH"         
 
 #
  #- name: "install dependencies."
