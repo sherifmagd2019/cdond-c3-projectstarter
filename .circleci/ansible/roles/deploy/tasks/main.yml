@@ -28,21 +28,21 @@
   
     npm run build 
     
-    sudo npm install forever -g
-    sudo npm install ts-node -g
+
     npm start &
  
     
 - name: "Executing Node app with PM2"
-  become: true
+  
   shell: |
     export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
     env PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+    source ~/.bashrc
     cd ~/backend-app/dist
 
     pm2 stop default
    
-    npx pm2 start main.js -name "ubuntu" --watch
+    npx pm2 start main.js
    
 #
  
