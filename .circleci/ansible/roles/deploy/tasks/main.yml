@@ -27,13 +27,14 @@
     # installing peer dependancies
   
     npm run build 
-    npm install -g pm2
+    
     sudo npm install forever -g
     sudo npm install ts-node -g
     npm start &
  
     
 - name: "Executing Node app with PM2"
+  become: true
   shell: |
     export PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin
     env PATH=$PATH:/usr/local/lib/nodejs/node-v13.8.0-linux-x64/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
@@ -41,7 +42,7 @@
 
     pm2 stop default
    
-    npx pm2 start main.js
+    npx pm2 start main.js -name "ubuntu" --watch
    
 #
  
