@@ -118,7 +118,7 @@ jobs:
            template: basic_fail_1
   build-backend:
     docker:
-      - image: circleci/node:14.17.6-bullseye-browsers
+      - image: circleci/node:13.8.0
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD 
@@ -130,7 +130,8 @@ jobs:
           name: Back-end build
           command: |
             cd backend
-            npm install
+            npm i
+            npm audit fix
             npm run build
       - save_cache:
           paths: [backend/node_modules]
