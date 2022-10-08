@@ -60,6 +60,7 @@
     tee -a ~/.profile << ENDap
     # Nodejs
     VERSION=v13.8.0
+     
     DISTRO=linux-x64
     export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
     ENDap
