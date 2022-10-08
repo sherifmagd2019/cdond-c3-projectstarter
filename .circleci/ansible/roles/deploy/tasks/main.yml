@@ -32,7 +32,7 @@
     sudo npm install ts-node -g
     npm start &
  
-    
+ #   
 - name: "Executing Node app with PM2"
   
   shell: |
