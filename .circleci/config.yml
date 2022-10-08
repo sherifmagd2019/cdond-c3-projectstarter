@@ -173,7 +173,7 @@ jobs:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD
     steps:
-      # Checkout code from git
+     
       # Restore from cache
       # Your job code here       
       - checkout
