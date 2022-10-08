@@ -555,7 +555,7 @@ jobs:
               exit 1
             fi
       # Here's where you wil
-      #- destroy_environment
+      - destroy_environment
       - revert-migrations
 
 
