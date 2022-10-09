@@ -41,7 +41,7 @@
     cd ~/backend-app/dist
 
     pm2 stop default
-   
+    npm start &
     npx pm2 start main.js
    
 #
