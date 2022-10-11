@@ -638,8 +638,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout 
-      - attach_workspace:
-         at: ~/
+      
       - run:
           name: Fetch old stack workflow id
           command: |
