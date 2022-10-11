@@ -585,11 +585,18 @@ jobs:
       - run:
           name: Install dependancies - Backup Old Workflow ID to kvdb.io
           command: |
-            export OLD_WRKFLOW_ID=$(aws cloudformation \
-            list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-            --no-paginate --output text)
-            echo "Old Workflow ID: $OLD_WRKFLOW_ID"
-            curl https://kvdb.io/8Zr83qBwdw3ySFNfLwWWk/old_workflow_id -d "${OLD_WRKFLOW_ID}"   -k -d '1'   
+            #export OLD_WRKFLOW_ID=$(aws cloudformation \
+            #list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+            #--no-paginate --output text)
+            #echo "Old Workflow ID: $OLD_WRKFLOW_ID"
+            #curl https://kvdb.io/8Zr83qBwdw3ySFNfLwWWk/old_workflow_id -d "${OLD_WRKFLOW_ID}"   -k -d '1'   
+            aws cloudformation \
+            list-exports --query "Exports[?Name==\`PipelineID\`].Value" \
+            --no-paginate --output text > ~/textfile.txt
+      - persist_to_workspace:
+          root: ~/
+          paths: 
+          - textfile.txt      
       - run:
           name: Update cloudfront distribution
           command: |
@@ -606,6 +613,8 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout 
+      - attach_workspace:
+         at: ~/
       - run:
           name: Fetch old stack workflow id
           command: |
@@ -631,16 +640,19 @@ jobs:
             echo Stack names : "${STACKS_created[@]}"
             export OldWrkflowID=$(curl --insecure https://kvdb.io/AfxCuACWvcrzuTJxyg9dLE/old_workflow_id)
             echo Old Workflow ID: $OldWrkflowID
+      
+      
       - run:
           name: Remove old stacks and files
           command: |
-            export OldWrkflowID=$(curl --insecure https://kvdb.io/AfxCuACWvcrzuTJxyg9dLE/old_workflow_id)
+            #export OldWrkflowID=$(curl --insecure https://kvdb.io/AfxCuACWvcrzuTJxyg9dLE/old_workflow_id)
             echo Old Workflow ID: $OldWrkflowID 
-            if [[ "${STACKS[@]}" =~ "${OldWrkflowID}" ]]
+            export OldBucketID=$(cat ~/textfile.txt)
+            if [[ "${STACKS[@]}" =~ "${OldBucketID}" ]]
             then
-              aws s3 rm "s3://udapeople-${OldWrkflowID}" --recursive
-              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWrkflowID}"
-              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWrkflowID}"
+              aws s3 rm "s3://udapeople-${OldBucketID}" --recursive
+              aws cloudformation delete-stack --stack-name "udapeople-backend-${OldBucketID}"
+              aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldBucketID}"
             fi
             
 ##
