@@ -107,6 +107,8 @@ jobs:
             npm install
             npm run build
             #npm install oauth-sign@^0.9.0
+            register: ps
+      - debug: msg={{ ps.stdout }}
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build      
@@ -685,6 +687,8 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
             fi
 
+            register: ps
+      - debug: msg={{ ps.stdout }}
           #  #export OldWrkflowID=$(curl --insecure https://kvdb.io/AfxCuACWvcrzuTJxyg9dLE/old_workflow_id)
           ##  echo Old Workflow ID: $OldWrkflowID 
           ##  export OldBucketID=$(cat ~/textfile.txt)
