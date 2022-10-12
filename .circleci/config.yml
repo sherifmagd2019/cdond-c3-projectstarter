@@ -107,8 +107,8 @@ jobs:
             npm install
             npm run build
             #npm install oauth-sign@^0.9.0
-            register: ps
-      - debug: msg={{ ps.stdout }}
+             
+       
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build      
@@ -682,13 +682,18 @@ jobs:
             echo Old Workflow ID: $OldWorkflowID 
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
+              echo "--------------------DELETE CONFIRMED------------------------"
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
+              echo s3://udapeople-${OldWorkflowID} deleted
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
+              echo udapeople-backend-${OldWorkflowID}   deleted
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID}"
+              echo udapeople-frontend-${OldWorkflowID} deleted
+            else
+              echo "XXXXXXXXXXX  CANNOT CLEAN  XXXXXXXXXXXXXXX"
             fi
 
-            register: ps
-      - debug: msg={{ ps.stdout }}
+            
           #  #export OldWrkflowID=$(curl --insecure https://kvdb.io/AfxCuACWvcrzuTJxyg9dLE/old_workflow_id)
           ##  echo Old Workflow ID: $OldWrkflowID 
           ##  export OldBucketID=$(cat ~/textfile.txt)
