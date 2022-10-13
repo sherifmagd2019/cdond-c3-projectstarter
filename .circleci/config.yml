@@ -607,7 +607,7 @@ jobs:
     #        apt install npm -y
     #        apt-get install awscli -y
     #        apt  install awscli -y
-    
+
       - run:
           name: Install dependancies - Backup Old Workflow ID to kvdb.io
           command: |
@@ -685,7 +685,7 @@ jobs:
             if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
             then
               echo "--------------------DELETE CONFIRMED------------------------"
-              aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
+              aws s3 rb "s3://udapeople-${OldWorkflowID}" --recursive
               echo s3://udapeople-${OldWorkflowID} deleted
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
               echo udapeople-backend-${OldWorkflowID}   deleted
@@ -710,32 +710,32 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
-      - test-frontend:
-          requires : [build-frontend]
-      - test-backend:  
-          requires : [build-backend]  
-      - scan-backend:
-          requires: [build-backend]
-      - scan-frontend:
-          requires: [build-frontend]   
-      - deploy-infrastructure:
-          requires: [test-frontend, test-backend, scan-frontend, scan-backend]  #     only: [test-feature-branch]     
-      - configure-infrastructure:
-          requires: [deploy-infrastructure] 
-      - run-migrations:
-          requires: [configure-infrastructure]     
-      - deploy-frontend:
-          requires: [run-migrations]   # filters:
-      - deploy-backend:
-          requires: [run-migrations]       
-      - smoke-test: 
-          requires: [deploy-backend, deploy-frontend]     
-      - cloudfront-update:
-          requires: [smoke-test]
-      - cleanup:
-          requires: [cloudfront-update]    
+      # - build-frontend
+      # - build-backend
+      # - test-frontend:
+      #     requires : [build-frontend]
+      # - test-backend:  
+      #     requires : [build-backend]  
+      # - scan-backend:
+      #     requires: [build-backend]
+      # - scan-frontend:
+      #     requires: [build-frontend]   
+      # - deploy-infrastructure:
+      #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]  #     only: [test-feature-branch]     
+      # - configure-infrastructure:
+      #     requires: [deploy-infrastructure] 
+      # - run-migrations:
+      #     requires: [configure-infrastructure]     
+      # - deploy-frontend:
+      #     requires: [run-migrations]   # filters:
+      # - deploy-backend:
+      #     requires: [run-migrations]       
+      # - smoke-test: 
+      #     requires: [deploy-backend, deploy-frontend]     
+      # - cloudfront-update:
+      #     requires: [smoke-test]
+       - cleanup
+      #     requires: [cloudfront-update]    
   send-notification:
     jobs:
       - notify:
