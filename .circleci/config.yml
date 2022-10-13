@@ -581,7 +581,7 @@ jobs:
             --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" \
             --tags project=udapeople
   
-  
+  #
   cleanup:
     docker:
       - image: amazon/aws-cli
@@ -619,15 +619,7 @@ jobs:
             fi
 ##
             
-          #  #export OldWrkflowID=$(curl --insecure https://kvdb.io/AfxCuACWvcrzuTJxyg9dLE/old_workflow_id)
-          ##  echo Old Workflow ID: $OldWrkflowID 
-          ##  export OldBucketID=$(cat ~/textfile.txt)
-          #  if [[ "${STACKS[@]}" =~ "${OldBucketID}" ]]
-          #  then
-          #    aws s3 rm "s3://udapeople-${OldBucketID}" --recursive
-          #    aws cloudformation delete-stack --stack-name "udapeople-backend-${OldBucketID}"
-          #    aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldBucketID}"
-          #  fi
+ 
             
 ##
 workflows:
