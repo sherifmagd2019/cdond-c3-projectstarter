@@ -8,4 +8,5 @@ URL02  Public URL for   S3 Bucket
 
 
 
-http://udapeople-a7f8672.s3-website-us-east-1.amazonaws.com/#/employees
+
+http://udapeople-4ca3856.s3-website.us-east-1.amazonaws.com/
