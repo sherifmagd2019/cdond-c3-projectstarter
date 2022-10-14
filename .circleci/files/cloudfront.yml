@@ -30,7 +30,7 @@ Resources:
           ForwardedValues:
             QueryString: False
           TargetOriginId: webpage
-          #ViewerProtocolPolicy: allow-all
+          #ViewerProtocolPolicy: allow-all //  https-only
           ViewerProtocolPolicy: redirect-to-https
 
 Outputs:
