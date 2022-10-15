@@ -30,8 +30,8 @@ Resources:
           ForwardedValues:
             QueryString: False
           TargetOriginId: webpage
-          #ViewerProtocolPolicy: allow-all //  https-only
-          ViewerProtocolPolicy: redirect-to-https
+          #ViewerProtocolPolicy: allow-all //  redirect-to-https  https-only
+          ViewerProtocolPolicy: allow-all    
 
 Outputs:
   WorkflowID:
